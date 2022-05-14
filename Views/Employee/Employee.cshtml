@@ -1,0 +1,77 @@
+﻿@model EmployeeForm.Models.tbl_Employee
+
+@{
+    ViewBag.Title = "Employee";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .eroor {
+        color: red;
+    }
+</style>
+
+@using (Html.BeginForm("AddEmployee", "Employee", FormMethod.Post))
+{
+    <br />
+    <h2>Add Employee</h2>
+    <hr />
+    <div class="container">
+        <div class="col-md-12">
+            <div class="form-group col-md-3">
+
+                <label>Name</label>
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "eroor" })
+            </div>
+
+            <div class="form-group col-md-3">
+                <label>Age</label>
+                @Html.TextBoxFor(m => m.Age, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Age, "", new { @class = "eroor" })
+            </div>
+
+            <div class="form-group col-md-3">
+                <label>Salary</label>
+                @Html.TextBoxFor(m => m.Salary, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Salary, "", new { @class = "eroor" })
+            </div>
+
+            <div class="form-group col-md-3">
+                <button type="submit" class="btn btn-success">Save</button>
+                <button type="reset" class="btn btn-danger">Reset</button>
+            </div>
+            <hr />
+        </div>
+
+
+    </div>
+    <hr />
+    <div class="col-md-12">
+        <table class="table table-hover">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Salary</th>
+                <th>Action</th>
+            </tr>
+
+            @foreach (var item in ViewBag.EmployeeData)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                    <td>@item.Age</td>
+                    <td>@item.Salary</td>
+                    <td>
+                        <a href="@Url.Action("EditEmployee",new { @item.Id})" class="btn btn-primary">Edit</a>
+                        <a href="@Url.Action("DeleteEmployee",new { @item.Id })" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+
+    </div>
+}

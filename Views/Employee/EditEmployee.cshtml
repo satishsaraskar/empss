@@ -1,0 +1,48 @@
+﻿@model EmployeeForm.Models.tbl_Employee
+@{
+    ViewBag.Title = "EditEmployee";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .eroor {
+        color: red;
+    }
+</style>
+
+@using (Html.BeginForm("EditEmployee", "Employee", FormMethod.Post))
+{
+    <br />
+    <h2>Edit Employee</h2>
+    <hr />
+
+    <div class="container">
+        <div class="col-md-12">
+            <div class="form-group col-md-3">
+                <label>Name</label>
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "eroor" })
+            </div>
+
+            <div class="form-group col-md-3">
+                <label>Age</label>
+                @Html.TextBoxFor(m => m.Age, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Age, "", new { @class = "eroor" })
+            </div>
+
+            <div class="form-group col-md-3">
+                <label>Salary</label>
+                @Html.TextBoxFor(m => m.Salary, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Salary, "", new { @class = "eroor" })
+            </div>
+
+            <div class="form-group col-md-3">
+                <button type="submit" class="btn btn-success">Update</button>
+                
+            </div>
+            <hr />
+        </div>
+
+
+    </div>
+   
+}
